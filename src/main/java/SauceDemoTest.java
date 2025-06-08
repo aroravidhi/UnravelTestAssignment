@@ -23,7 +23,7 @@ public class SauceDemoTest {
         options.addArguments("--start-maximized");
         options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("user-data-dir=" + userProfilePath);
-        options.addArguments("--incognito"); // ✅ Run in incognito mode
+        options.addArguments("--incognito");
 
         HashMap<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
@@ -42,18 +42,18 @@ public class SauceDemoTest {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys("standard_user");
             driver.findElement(By.id("password")).sendKeys("secret_sauce");
             driver.findElement(By.id("login-button")).click();
-            System.out.println("✅ Logged in successfully.");
+            System.out.println("Logged in successfully.");
 
             // Click on the jacket item
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Sauce Labs Fleece Jacket']"))).click();
-            System.out.println("✅ Navigated to jacket details.");
+            System.out.println("Navigated to jacket details.");
 
             // Scroll and click Add to Cart
-            System.out.println("⌛ Waiting for Add to Cart button to be clickable...");
+            System.out.println("Waiting for Add to Cart button to be clickable...");
             WebElement addToCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("add-to-cart")));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addToCartBtn);
             wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn)).click();
-            System.out.println("✅ Item added to cart.");
+            System.out.println("Item added to cart.");
 
             // Go to cart
             driver.findElement(By.className("shopping_cart_link")).click();
@@ -76,7 +76,7 @@ public class SauceDemoTest {
 
             // Finish
             driver.findElement(By.id("finish")).click();
-            System.out.println("✅ Order completed successfully!");
+            System.out.println("Order completed successfully!");
 
         } catch (Exception e) {
             System.out.println("❌ Test failed: " + e.getMessage());
